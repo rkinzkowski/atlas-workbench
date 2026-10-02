@@ -1,0 +1,979 @@
+{
+  "source": {
+    "filename": "webvetted.com_graph.har",
+    "bytes": 20417466,
+    "sha256": "68e82ce5c954b7ee07a05609b934e8127cc3c88961a72fc27ed62563917ebdc1",
+    "entry_count": 280,
+    "graph_entries": [
+      97,
+      197
+    ],
+    "config_entries": [
+      93,
+      193
+    ],
+    "document_entries": [
+      80,
+      180
+    ],
+    "locator_convention": "Zero-based HAR entry index; decode response.content.text, then follow inner JSON pointer. HTML line numbers are one-based."
+  },
+  "scope": "Configuration returned to this browser; advertised capability does not prove execution or entitlement. This is not necessarily a global server registry.",
+  "category_count": 24,
+  "transform_entry_count": 80,
+  "distinct_transform_id_count": 73,
+  "generated_at": "2026-09-16T19:01:50+00:00",
+  "entities": [
+    {
+      "id": "domain",
+      "label": "Domain",
+      "icon": "fa-solid fa-globe",
+      "icon_color": "text-slate-500",
+      "entity_type": [
+        "domain",
+        "website",
+        "company_website",
+        "subdomain"
+      ],
+      "transforms": [
+        {
+          "id": "domain_contacts",
+          "label": "Find Linked Emails & Socials",
+          "description": "List known emails and social media connected to this domain.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Domain\\WebsiteContactsScraperClient",
+          "monitor": true
+        },
+        {
+          "id": "domain_whois",
+          "label": "WHOIS, Registrar, Name Servers, DNS & SSL Details",
+          "description": "Collect historical WHOIS and registrar ownership signals.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\WhoisClient",
+          "method": "fetch",
+          "monitor": true
+        },
+        {
+          "id": "domain_builtwith",
+          "label": "Extract Tech-stack [BuiltWith]",
+          "description": "Extracts domain tech stack.",
+          "credit_cost": 9,
+          "class": "App\\Services\\ApiClients\\Domain\\BuiltWithClient"
+        },
+        {
+          "id": "domain_subdomains",
+          "label": "Scan for Subdomains [Deep]",
+          "description": "List known subdomains connected to domain.",
+          "credit_cost": 6,
+          "class": "App\\Services\\ApiClients\\Domain\\DomainSubdomainsClient",
+          "monitor": true
+        },
+        {
+          "id": "domain_safe_browsing",
+          "label": "Google SafeBrowsing Status",
+          "description": "Check Safe Browsing risk classification.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\GoogleSafeBrowsing",
+          "method": "fetch",
+          "monitor": true
+        },
+        {
+          "id": "domain_places",
+          "label": "Find Location on GoogleMaps",
+          "description": "Location references tied to the domain.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\Serper\\GoogleMapPlaces",
+          "method": "fetch"
+        },
+        {
+          "id": "domain_linkedin",
+          "label": "Get LinkedIn Account",
+          "description": "Scrapes LinkedIn profile data for the domain.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Reputation\\LinkedInBusinessDataClient"
+        },
+        {
+          "id": "domain_trademark",
+          "label": "USPTO Trademark Check",
+          "description": "Look for trademarks tied to the domain",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Domain\\UsptoTrademarkSearchClient",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "email",
+      "label": "Email Address",
+      "icon": "fa-solid fa-envelope",
+      "icon_color": "text-rose-500",
+      "entity_type": [
+        "email",
+        "email_address"
+      ],
+      "transforms": [
+        {
+          "id": "email_reverse_lookup",
+          "label": "Find Linked Accounts",
+          "description": "Reverse Email Check for online platforms the email is registered on.",
+          "credit_cost": 3,
+          "tier": "reverse_email",
+          "class": "App\\Services\\ApiClients\\Social\\AccountReverseCheck",
+          "monitor": true
+        },
+        {
+          "id": "email_osint_industries",
+          "label": "Premium Enrich [OSINT Industries]",
+          "description": "Search OSINT Industries modules for accounts, profiles, and linked evidence tied to this email.",
+          "credit_cost": 10,
+          "tier": "reverse_email",
+          "class": "App\\Services\\IndieApis\\OsintIndustriesLookupClient"
+        },
+        {
+          "id": "email_breach_data",
+          "label": "Data Breaches & Leaks",
+          "description": "Search breach datasets and exposed records tied to this email.",
+          "credit_cost": 3,
+          "tier": "reverse_email",
+          "class": "App\\Services\\IndieApis\\BreachDataClient",
+          "monitor": true
+        },
+        {
+          "id": "email_social_presence",
+          "label": "Connected Social Accounts",
+          "description": "Probe for linked social and consumer account presence.",
+          "credit_cost": 6,
+          "tier": "reverse_email",
+          "class": "App\\Services\\ApiClients\\Social\\AccountOsintTraceClient",
+          "monitor": true
+        },
+        {
+          "id": "gmail_account_presence",
+          "label": "Connected Gmail Account",
+          "description": "Probe for linked Gmail account & GMaps presence.",
+          "credit_cost": 6,
+          "tier": "reverse_email",
+          "class": "App\\Services\\ApiClients\\Email\\GMailTraceClient"
+        },
+        {
+          "id": "email_linkedin_account",
+          "label": "Connected LinkedIn Account",
+          "description": "Find any LinkedIn Profiles connected to this Email",
+          "credit_cost": 6,
+          "class": "App\\Services\\ApiClients\\Email\\LinkedInSearchEmailClient",
+          "monitor": true
+        },
+        {
+          "id": "email_truepeople",
+          "label": "U.S. Public Records Search",
+          "description": "Search U.S. public records for information connected to this Email.",
+          "credit_cost": 6,
+          "tier": "email",
+          "class": "App\\Services\\ApiClients\\Social\\TruePeopleWorkBench",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "username",
+      "label": "Username",
+      "icon": "fa-solid fa-user",
+      "icon_color": "text-indigo-500",
+      "entity_type": [
+        "username"
+      ],
+      "transforms": [
+        {
+          "id": "username_reverse_lookup",
+          "label": "Find Linked Accounts",
+          "description": "Reverse Username Check for major platforms this username is present on.",
+          "credit_cost": 3,
+          "tier": "reverse_username",
+          "class": "App\\Services\\ApiClients\\Social\\AccountReverseCheck",
+          "monitor": true
+        },
+        {
+          "id": "username_osint_industries",
+          "label": "Premium Enrich [OSINT Industries]",
+          "description": "Search OSINT Industries modules for accounts, profiles, and linked evidence tied to this username.",
+          "credit_cost": 10,
+          "tier": "reverse_username",
+          "class": "App\\Services\\IndieApis\\OsintIndustriesLookupClient"
+        },
+        {
+          "id": "instagram_search",
+          "label": "Connected Instagram Accounts",
+          "description": "Search Instagram profiles by name.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Social\\InstagramSearchClient",
+          "monitor": true
+        },
+        {
+          "id": "tiktok_search",
+          "label": "Connected Tiktok Accounts",
+          "description": "Find Tiktok accounts of name.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\TikTok\\TikTokUserSearch",
+          "monitor": true
+        },
+        {
+          "id": "username_breach_data",
+          "label": "Data Breaches & Leaks",
+          "description": "Search public breach datasets for records linked to this name.",
+          "credit_cost": 3,
+          "tier": "username",
+          "class": "App\\Services\\IndieApis\\BreachDataClient",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "phone",
+      "label": "Phone Number",
+      "icon": "fa-solid fa-phone",
+      "icon_color": "text-teal-500",
+      "entity_type": [
+        "phone",
+        "phone_number"
+      ],
+      "transforms": [
+        {
+          "id": "phone_truecaller",
+          "label": "Truecaller Identity Lookup",
+          "description": "Resolve caller name, carrier, and risk hints for this number.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Phone\\TrueCallerClient"
+        },
+        {
+          "id": "phone_osint_industries",
+          "label": "Get Linked Accounts [OSINT Industries]",
+          "description": "Search OSINT Industries for accounts, profiles, and linked evidence tied to this phone number.",
+          "credit_cost": 10,
+          "tier": "reverse_phone",
+          "class": "App\\Services\\IndieApis\\OsintIndustriesLookupClient"
+        },
+        {
+          "id": "phone_callapp",
+          "label": "CallApp Contact Data",
+          "description": "Pull linked names, sites, locations, and recovered emails.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Phone\\CallAppClient"
+        },
+        {
+          "id": "phone_eyecon",
+          "label": "EyeCon Identity Check",
+          "description": "Look for contact names and profile imagery tied to the number.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Phone\\EyeConClient"
+        },
+        {
+          "id": "phone_whatsapp",
+          "label": "WhatsApp Account Check",
+          "description": "Check whether the number is tied to a WhatsApp business profile.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Phone\\WhatsappClient"
+        },
+        {
+          "id": "phone_breach_data",
+          "label": "Data Breaches & Leaks",
+          "description": "Search public breach datasets for records linked to this number.",
+          "credit_cost": 3,
+          "tier": "reverse_phone",
+          "class": "App\\Services\\IndieApis\\BreachDataClient",
+          "monitor": true
+        },
+        {
+          "id": "phone_social_trace",
+          "label": "Connected Social Accounts",
+          "description": "Probe major platforms for linked phone-based registrations.",
+          "credit_cost": 6,
+          "tier": "phone",
+          "class": "App\\Services\\ApiClients\\Social\\AccountOsintTraceClient",
+          "monitor": true
+        },
+        {
+          "id": "phone_truepeople",
+          "label": "U.S. Public Records Search",
+          "description": "Search U.S. public records for information connected to this number.",
+          "credit_cost": 6,
+          "tier": "phone",
+          "class": "App\\Services\\ApiClients\\Social\\TruePeopleWorkBench",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "facebook",
+      "label": "Facebook Profile",
+      "icon": "fa-brands fa-facebook",
+      "icon_color": "text-blue-600",
+      "entity_type": "facebook",
+      "transforms": [
+        {
+          "id": "facebook_profile_data",
+          "label": "Facebook Profile Data",
+          "description": "Fetch detailed profile metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Facebook\\ProfileClient",
+          "extractId": "fbId",
+          "monitor": true
+        },
+        {
+          "id": "facebook_profile_likes",
+          "label": "Facebook Likes",
+          "description": "Fetch liked pages and accounts.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Facebook\\ProfileLikesClient",
+          "extractId": "fbId",
+          "tier": "deep",
+          "monitor": true
+        },
+        {
+          "id": "facebook_profile_followed",
+          "label": "Top Followed Accounts",
+          "description": "Fetch top accounts this target is following.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Facebook\\ProfileFollowingClient",
+          "extractId": "fbId"
+        },
+        {
+          "id": "facebook_profile_followers",
+          "label": "Top Facebook Followers",
+          "description": "Fetch followers on facebook.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Facebook\\ProfileFollowersClient",
+          "extractId": "fbId",
+          "tier": "deep"
+        }
+      ]
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn Profile",
+      "icon": "fa-brands fa-linkedin",
+      "icon_color": "text-blue-700",
+      "entity_type": "linkedin",
+      "transforms": [
+        {
+          "id": "linkedin_profile",
+          "label": "LinkedIn Profile Data",
+          "description": "Fetch detailed LinkedIn profile data.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Reputation\\LinkedInProfileDataClient",
+          "monitor": true
+        },
+        {
+          "id": "linkedin_posts",
+          "label": "Latest LinkedIn Posts",
+          "description": "Fetch recent LinkedIn posts and interactions.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Reputation\\LinkedInPostsDataClient",
+          "monitor": true
+        },
+        {
+          "id": "linkedin_email",
+          "label": "Connected LinkedIn Email",
+          "description": "Fetch most likely LinkedIn work email.",
+          "credit_cost": 6,
+          "class": "App\\Services\\ApiClients\\Email\\LinkedInProfileEmailClient"
+        }
+      ]
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram Profile",
+      "icon": "fa-brands fa-instagram",
+      "icon_color": "text-pink-500",
+      "entity_type": "instagram",
+      "transforms": [
+        {
+          "id": "instagram_profile",
+          "label": "Instagram Profile Data",
+          "description": "Fetch Instagram Account profile metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Instagram\\InstagramProfile",
+          "method": "fetch",
+          "extractHandle": "instagram",
+          "monitor": true
+        },
+        {
+          "id": "instagram_posts",
+          "label": "Top Instagram Posts",
+          "description": "Fetch recent Instagram Account posts.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Instagram\\InstagramPosts",
+          "method": "fetch",
+          "tier": "deep",
+          "extractHandle": "instagram",
+          "monitor": true
+        },
+        {
+          "id": "instagram_reels",
+          "label": "Instagram Reels",
+          "description": "Fetch recent Instagram Account reels.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Instagram\\InstagramReels",
+          "method": "fetch",
+          "tier": "deep",
+          "extractHandle": "instagram"
+        },
+        {
+          "id": "username_breach_data",
+          "label": "Username Breach Data",
+          "description": "Search public breach datasets for records linked to this name.",
+          "credit_cost": 3,
+          "tier": "username",
+          "class": "App\\Services\\IndieApis\\BreachDataClient",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "tiktok",
+      "label": "TikTok Profile",
+      "icon": "fa-brands fa-tiktok",
+      "icon_color": "text-slate-700",
+      "entity_type": "tiktok",
+      "transforms": [
+        {
+          "id": "tiktok_profile",
+          "label": "TikTok Profile Data",
+          "description": "Fetch TikTok profile metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\TikTok\\TikTokProfile",
+          "method": "fetch",
+          "extractHandle": "tiktok",
+          "monitor": true
+        },
+        {
+          "id": "tiktok_profile_videos",
+          "label": "TikTok Video Posts",
+          "description": "Fetch TikTok profile videos.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\TikTok\\TikTokProfileVideos",
+          "method": "fetch",
+          "extractHandle": "tiktok",
+          "monitor": true
+        },
+        {
+          "id": "username_breach_data",
+          "label": "Username Breach Data",
+          "description": "Search public breach datasets for records linked to this name.",
+          "credit_cost": 3,
+          "tier": "username",
+          "class": "App\\Services\\IndieApis\\BreachDataClient",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "twitter",
+      "label": "X / Twitter Profile",
+      "icon": "fa-brands fa-x-twitter",
+      "icon_color": "text-slate-900",
+      "entity_type": "twitter",
+      "transforms": [
+        {
+          "id": "twitter_profile",
+          "label": "X/Twitter Profile Data",
+          "description": "Fetch X/Twitter profile metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Twitter\\TwitterProfileClient",
+          "extractHandle": "twitter",
+          "monitor": true
+        },
+        {
+          "id": "twitter_username_history",
+          "label": "Previous X/Twitter Usernames",
+          "description": "Search for previous handles tied to this X/Twitter account",
+          "credit_cost": 2,
+          "tier": "username_history",
+          "source_id": "memory_lol_twitter_history_v1",
+          "class": "App\\Services\\IndieApis\\MemoryLolService",
+          "extractHandle": "twitter"
+        },
+        {
+          "id": "twitter_latest_tweets",
+          "label": "Get Latest Tweets",
+          "description": "Fetch recent tweets from the user timeline.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Twitter\\TwitterTimelineTweetsClient",
+          "extractHandle": "twitter",
+          "monitor": true
+        },
+        {
+          "id": "twitter_popular_tweets",
+          "label": "Most Popular Tweets",
+          "description": "Fetch the popular tweets by this user.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Twitter\\TwitterUserTweets",
+          "method": "fetch",
+          "extractHandle": "twitter",
+          "monitor": true
+        },
+        {
+          "id": "username_breach_data",
+          "label": "Username Breach Data",
+          "description": "Search public breach datasets for records linked to this name.",
+          "credit_cost": 3,
+          "tier": "username",
+          "class": "App\\Services\\IndieApis\\BreachDataClient",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "threads",
+      "label": "Threads Profile",
+      "icon": "fa-brands fa-threads",
+      "icon_color": "text-slate-800",
+      "entity_type": "threads",
+      "transforms": [
+        {
+          "id": "threads_profile",
+          "label": "Threads Profile Data",
+          "description": "Fetch Threads profile metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Threads\\ThreadsProfile",
+          "method": "fetch",
+          "extractHandle": "threads",
+          "monitor": true
+        },
+        {
+          "id": "threads_posts",
+          "label": "Latest Threads Posts",
+          "description": "Fetch recent Threads posts.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Threads\\ThreadsPosts",
+          "method": "fetch",
+          "extractHandle": "threads",
+          "monitor": true
+        },
+        {
+          "id": "username_breach_data",
+          "label": "Username Breach Data",
+          "description": "Search public breach datasets for records linked to this name.",
+          "credit_cost": 3,
+          "tier": "username",
+          "class": "App\\Services\\IndieApis\\BreachDataClient",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "bluesky",
+      "label": "Bluesky Profile",
+      "icon": "fa-brands fa-bluesky",
+      "icon_color": "text-sky-500",
+      "entity_type": "bluesky",
+      "transforms": [
+        {
+          "id": "bluesky_profile",
+          "label": "Bluesky Profile Data",
+          "description": "Fetch Bluesky profile metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Bluesky\\BlueskyProfile",
+          "method": "fetch",
+          "extractHandle": "bluesky",
+          "monitor": true
+        },
+        {
+          "id": "bluesky_posts",
+          "label": "Latest Account Posts",
+          "description": "Fetch recent Bluesky posts.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Bluesky\\BlueskyPosts",
+          "method": "fetch",
+          "extractHandle": "bluesky",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "youtube",
+      "label": "YouTube Channel",
+      "icon": "fa-brands fa-youtube",
+      "icon_color": "text-red-600",
+      "entity_type": "youtube",
+      "transforms": [
+        {
+          "id": "youtube_channel",
+          "label": "YouTube Channel Data",
+          "description": "Fetch YouTube channel metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\YouTube\\YouTubeChannel",
+          "method": "fetch",
+          "extractHandle": "youtube",
+          "monitor": true
+        },
+        {
+          "id": "youtube_channel_videos",
+          "label": "YouTube Channel Videos",
+          "description": "Fetch recent YouTube channel videos.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\YouTube\\YouTubeChannelVideos",
+          "method": "fetch",
+          "extractHandle": "youtube",
+          "monitor": true
+        },
+        {
+          "id": "youtube_channel_shorts",
+          "label": "YouTube Channel Shorts",
+          "description": "Fetch recent YouTube channel shorts.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\YouTube\\YouTubeChannelShorts",
+          "method": "fetch",
+          "extractHandle": "youtube"
+        }
+      ]
+    },
+    {
+      "id": "truthsocial",
+      "label": "Truth Social Profile",
+      "icon": "fa-solid fa-comment",
+      "icon_color": "text-slate-700",
+      "entity_type": "truthsocial",
+      "transforms": [
+        {
+          "id": "truthsocial_profile",
+          "label": "TruthSocial Profile Data",
+          "description": "Fetch Truth Social profile metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\TruthSocial\\TruthSocialProfile",
+          "method": "fetch",
+          "extractHandle": "truthsocial",
+          "monitor": true
+        },
+        {
+          "id": "truthsocial_posts",
+          "label": "Latest TruthSocial Posts",
+          "description": "Fetch recent Truth Social posts.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\TruthSocial\\TruthSocialUserPosts",
+          "method": "fetch",
+          "extractHandle": "truthsocial",
+          "monitor": true
+        },
+        {
+          "id": "username_breach_data",
+          "label": "Username Breach Data",
+          "description": "Search public breach datasets for records linked to this name.",
+          "credit_cost": 3,
+          "tier": "username",
+          "class": "App\\Services\\IndieApis\\BreachDataClient",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "snapchat",
+      "label": "Snapchat Profile",
+      "icon": "fa-brands fa-snapchat",
+      "icon_color": "text-yellow-400",
+      "entity_type": "snapchat",
+      "transforms": [
+        {
+          "id": "snapchat_profile",
+          "label": "Snapchat Profile Data",
+          "description": "Fetch Snapchat profile metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Snapchat\\SnapchatProfile",
+          "method": "fetch",
+          "extractHandle": "snapchat",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "pinterest",
+      "label": "Pinterest Profile",
+      "icon": "fa-brands fa-pinterest",
+      "icon_color": "text-red-500",
+      "entity_type": "pinterest",
+      "transforms": [
+        {
+          "id": "pinterest_boards",
+          "label": "Pinterest Account Boards",
+          "description": "Fetch Pinterest boards for the profile.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\Pinterest\\PinterestUserBoards",
+          "method": "fetch",
+          "extractHandle": "pinterest",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "linktree",
+      "label": "Linktree Page",
+      "icon": "fa-solid fa-link",
+      "icon_color": "text-emerald-600",
+      "entity_type": "linktree",
+      "transforms": [
+        {
+          "id": "linktree_page",
+          "label": "Linktree Page Data",
+          "description": "Fetch Linktree links and metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\LinkInBio\\LinktreePage",
+          "method": "fetch",
+          "extractHandle": "linktree",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "komi",
+      "label": "Komi Page",
+      "icon": "fa-solid fa-link",
+      "icon_color": "text-emerald-600",
+      "entity_type": "komi",
+      "transforms": [
+        {
+          "id": "komi_page",
+          "label": "Komi Page Data",
+          "description": "Fetch Komi storefront links and metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\LinkInBio\\KomiPage",
+          "method": "fetch",
+          "extractHandle": "komi",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "pillar",
+      "label": "Pillar Page",
+      "icon": "fa-solid fa-link",
+      "icon_color": "text-emerald-600",
+      "entity_type": "pillar",
+      "transforms": [
+        {
+          "id": "pillar_page",
+          "label": "Pillar Page Data",
+          "description": "Fetch Pillar links and metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\LinkInBio\\PillarPage",
+          "method": "fetch",
+          "extractHandle": "pillar",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "linkbio",
+      "label": "Linkbio Page",
+      "icon": "fa-solid fa-link",
+      "icon_color": "text-emerald-600",
+      "entity_type": "linkbio",
+      "transforms": [
+        {
+          "id": "linkbio_page",
+          "label": "Linkbio Page Data",
+          "description": "Fetch Linkbio links and metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\LinkInBio\\LinkbioPage",
+          "method": "fetch",
+          "extractHandle": "linkbio",
+          "monitor": true
+        }
+      ]
+    },
+    {
+      "id": "amazon_shop",
+      "label": "Amazon Shop Page",
+      "icon": "fa-solid fa-link",
+      "icon_color": "text-emerald-600",
+      "entity_type": "amazon_shop",
+      "transforms": [
+        {
+          "id": "amazon_shop_page",
+          "label": "Amazon Shop Page",
+          "description": "Fetch Amazon storefront links and metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\LinkInBio\\AmazonShopPage",
+          "method": "fetch",
+          "extractHandle": "amazon_shop"
+        }
+      ]
+    },
+    {
+      "id": "person",
+      "label": "Person",
+      "icon": "fa-solid fa-user",
+      "icon_color": "text-indigo-500",
+      "entity_type": [
+        "person",
+        "organization",
+        "registrar",
+        "company",
+        "people",
+        "education",
+        "business",
+        "registrant",
+        "brand"
+      ],
+      "transforms": [
+        {
+          "id": "person_social_search",
+          "label": "Find All Social Accounts [Deep]",
+          "description": "Find related social profiles handles and mentions.",
+          "credit_cost": 6,
+          "class": "App\\Services\\ApiClients\\Social\\PersonSocialSearchClient"
+        },
+        {
+          "id": "linkedin_search",
+          "label": "Find LinkedIn Accounts",
+          "description": "Search LinkedIn for person or company.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Reputation\\LinkedInSearchClient"
+        },
+        {
+          "id": "facebook_search",
+          "label": "Find Facebook Accounts",
+          "description": "Find profile accounts of given name.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Facebook\\PeopleSearchClient"
+        },
+        {
+          "id": "instagram_search",
+          "label": "Find Instagram Accounts",
+          "description": "Search Instagram profiles by name.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Social\\InstagramSearchClient",
+          "monitor": true
+        },
+        {
+          "id": "tiktok_search",
+          "label": "Find Tiktok Accounts",
+          "description": "Find Tiktok accounts of name.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\ScrapeCreator\\TikTok\\TikTokUserSearch",
+          "monitor": true
+        },
+        {
+          "id": "truepeople_search",
+          "label": "U.S. Public Records Search",
+          "description": "Search U.S. public records for information connected to this Name.",
+          "credit_cost": 3,
+          "tier": "name",
+          "class": "App\\Services\\ApiClients\\Social\\TruePeopleSearch"
+        }
+      ]
+    },
+    {
+      "id": "ip",
+      "label": "IP Address",
+      "icon": "fa-solid fa-location-crosshairs",
+      "icon_color": "text-emerald-600",
+      "entity_type": [
+        "ip",
+        "ip_address"
+      ],
+      "transforms": [
+        {
+          "id": "ip_geolocation",
+          "label": "IP Geolocation",
+          "description": "Resolve geo, ASN, and hosting info.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\IP\\IpGeolocationClient"
+        },
+        {
+          "id": "ip_hostsdomains",
+          "label": "Domains Hosted on IP [Detailed]",
+          "description": "Find all the domains on an IP Address.",
+          "credit_cost": 6,
+          "class": "App\\Services\\ApiClients\\IP\\IpHostedDomainsClient"
+        },
+        {
+          "id": "ip_reputation",
+          "label": "IP Reputation",
+          "description": "Check IP reputation and risk signals.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\IP\\IpReputationClient"
+        }
+      ]
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "icon": "fa-solid fa-globe",
+      "icon_color": "text-slate-500",
+      "entity_type": [
+        "location",
+        "address",
+        "place",
+        "city",
+        "town",
+        "zip",
+        "postal_code",
+        "coordinate",
+        "geolocation",
+        "places_lived",
+        "hometown",
+        "current_city"
+      ],
+      "transforms": [
+        {
+          "id": "maps_listing",
+          "label": "Google Maps Listing",
+          "description": "Extracts Map Location references tied to address.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ApiClients\\Local\\MapsDataSearchClient"
+        }
+      ]
+    },
+    {
+      "id": "image",
+      "label": "Image",
+      "icon": "fa-solid fa-image",
+      "icon_color": "text-purple-500",
+      "entity_type": [
+        "image",
+        "logo"
+      ],
+      "transforms": [
+        {
+          "id": "image_reverse_search",
+          "label": "TinEye Image Search",
+          "description": "Locate exact and modified copies of an image across the web.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ImageApis\\TinEyeImageClient",
+          "method": "fetch"
+        },
+        {
+          "id": "image_google_lens",
+          "label": "Google Lens Image Search",
+          "description": "Find visually similar pages and likely source contexts through Google Lens.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\Serper\\GoogleReverseImage",
+          "method": "fetch"
+        },
+        {
+          "id": "image_yandex_images",
+          "label": "Yandex Images Search",
+          "description": "Find Yandex reverse-image matches, similar images, and source context pages.",
+          "credit_cost": 3,
+          "class": "App\\Services\\IndieApis\\SerpApi\\YandexReverseImage",
+          "method": "fetch"
+        },
+        {
+          "id": "image_scene_analysis",
+          "label": "AI & Deepfake Analysis",
+          "description": "Detect face similarity and scene metadata.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ImageApis\\SightengineImageClient",
+          "method": "fetch"
+        },
+        {
+          "id": "image_moderation",
+          "label": "Image Safety Analysis",
+          "description": "Detect unsafe or manipulated imagery.",
+          "credit_cost": 3,
+          "class": "App\\Services\\ImageApis\\OpenAIModerationClient",
+          "method": "fetch"
+        }
+      ]
+    }
+  ]
+}

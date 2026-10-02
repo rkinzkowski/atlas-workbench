@@ -1,0 +1,210 @@
+{
+  "source": "https://docs.scrapecreators.com/openapi.json",
+  "retrieved": "2026-09-16",
+  "routes": {
+    "/v1/instagram/profile": {
+      "query_parameters": [
+        "handle",
+        "trim",
+        "cache_max_age"
+      ]
+    },
+    "/v2/instagram/user/posts": {
+      "query_parameters": [
+        "handle",
+        "next_max_id",
+        "trim"
+      ]
+    },
+    "/v1/instagram/user/reels": {
+      "query_parameters": [
+        "user_id",
+        "handle",
+        "max_id",
+        "trim"
+      ]
+    },
+    "/v1/instagram/search": {
+      "query_parameters": [
+        "query"
+      ]
+    },
+    "/v1/tiktok/profile": {
+      "query_parameters": [
+        "handle",
+        "user_id",
+        "cache_max_age"
+      ]
+    },
+    "/v3/tiktok/profile/videos": {
+      "query_parameters": [
+        "handle",
+        "user_id",
+        "sort_by",
+        "max_cursor",
+        "region",
+        "trim"
+      ]
+    },
+    "/v1/tiktok/search/users": {
+      "query_parameters": [
+        "query",
+        "cursor",
+        "trim"
+      ]
+    },
+    "/v1/facebook/profile": {
+      "query_parameters": [
+        "url",
+        "get_business_hours",
+        "include_gated_profile",
+        "cache_max_age"
+      ]
+    },
+    "/v1/facebook/profile/posts": {
+      "query_parameters": [
+        "url",
+        "pageId",
+        "cursor"
+      ]
+    },
+    "/v1/linkedin/profile": {
+      "query_parameters": [
+        "url"
+      ]
+    },
+    "/v1/linkedin/company": {
+      "query_parameters": [
+        "url"
+      ]
+    },
+    "/v1/linkedin/company/posts": {
+      "query_parameters": [
+        "url",
+        "page"
+      ]
+    },
+    "/v1/linkedin/search/posts": {
+      "query_parameters": [
+        "query",
+        "date_posted",
+        "cursor"
+      ]
+    },
+    "/v1/twitter/profile": {
+      "query_parameters": [
+        "handle",
+        "cache_max_age"
+      ]
+    },
+    "/v1/twitter/user-tweets": {
+      "query_parameters": [
+        "handle",
+        "trim"
+      ]
+    },
+    "/v1/threads/profile": {
+      "query_parameters": [
+        "handle",
+        "cache_max_age"
+      ]
+    },
+    "/v1/threads/user/posts": {
+      "query_parameters": [
+        "handle",
+        "trim"
+      ]
+    },
+    "/v1/bluesky/profile": {
+      "query_parameters": [
+        "handle"
+      ]
+    },
+    "/v1/bluesky/user/posts": {
+      "query_parameters": [
+        "handle",
+        "user_id"
+      ]
+    },
+    "/v1/youtube/channel": {
+      "query_parameters": [
+        "channelId",
+        "handle",
+        "url",
+        "cache_max_age"
+      ]
+    },
+    "/v1/youtube/channel-videos": {
+      "query_parameters": [
+        "channelId",
+        "handle",
+        "sort",
+        "continuationToken",
+        "is_paid_promotions",
+        "includeExtras"
+      ]
+    },
+    "/v1/youtube/channel/shorts": {
+      "query_parameters": [
+        "handle",
+        "channelId",
+        "sort",
+        "continuationToken"
+      ]
+    },
+    "/v1/truthsocial/profile": {
+      "query_parameters": [
+        "handle"
+      ]
+    },
+    "/v1/truthsocial/user/posts": {
+      "query_parameters": [
+        "handle",
+        "user_id",
+        "next_max_id",
+        "trim"
+      ]
+    },
+    "/v1/snapchat/profile": {
+      "query_parameters": [
+        "handle"
+      ]
+    },
+    "/v1/pinterest/user/boards": {
+      "query_parameters": [
+        "handle",
+        "trim"
+      ]
+    },
+    "/v1/linktree": {
+      "query_parameters": [
+        "url",
+        "cache_max_age"
+      ]
+    },
+    "/v1/komi": {
+      "query_parameters": [
+        "url",
+        "cache_max_age"
+      ]
+    },
+    "/v1/pillar": {
+      "query_parameters": [
+        "url",
+        "cache_max_age"
+      ]
+    },
+    "/v1/linkbio": {
+      "query_parameters": [
+        "url",
+        "cache_max_age"
+      ]
+    },
+    "/v1/amazon/shop": {
+      "query_parameters": [
+        "url",
+        "pageToken"
+      ]
+    }
+  }
+}

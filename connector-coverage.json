@@ -1,0 +1,1254 @@
+{
+  "as_of": "2026-09-16",
+  "implementations": 68,
+  "captured_ids_with_adapter": 51,
+  "captured_ids_total": 73,
+  "captured_ids_without_adapter": 22,
+  "note": "An adapter using a captured ID may use a substitute provider with narrower coverage. This is not full WebVetted parity.",
+  "connectors": [
+    {
+      "id": "amazon_shop_page",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Amazon shop \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "amazon_shop"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/amazon/shop/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "atlas_dns",
+      "captured_id": false,
+      "implemented": true,
+      "label": "Public DNS records",
+      "credential_env": null,
+      "types": [
+        "domain",
+        "website",
+        "subdomain"
+      ],
+      "coverage": "A, AAAA, MX, NS, and TXT DNS response bodies.",
+      "provider": "Google public DNS",
+      "docs": "https://developers.google.com/speed/public-dns/docs/doh/json",
+      "validation": "see VALIDATION.md"
+    },
+    {
+      "id": "bluesky_posts",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Bluesky posts \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "bluesky"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/bluesky/user/posts/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "bluesky_profile",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Bluesky profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "bluesky"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/bluesky/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "domain_builtwith",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Website technologies \u00b7 BuiltWith",
+      "credential_env": "BUILTWITH_API_KEY",
+      "types": [
+        "domain",
+        "website",
+        "company_website",
+        "subdomain"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "BuiltWith",
+      "docs": "https://api.builtwith.com/domain-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "domain_contacts",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Website links & contact addresses",
+      "credential_env": null,
+      "types": [
+        "domain",
+        "website",
+        "company_website",
+        "subdomain"
+      ],
+      "coverage": "One page's full HTML, parsed text, and links. No website crawl or JavaScript rendering.",
+      "provider": "Public website",
+      "docs": "",
+      "validation": "see VALIDATION.md"
+    },
+    {
+      "id": "domain_linkedin",
+      "captured_id": true,
+      "implemented": true,
+      "label": "LinkedIn indexed company search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "domain",
+        "website",
+        "company_website"
+      ],
+      "coverage": "Indexed company search results, not direct company-profile enrichment.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "domain_places",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Domain / business places search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "domain",
+        "website",
+        "company_website"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "domain_safe_browsing",
+      "captured_id": true,
+      "implemented": true,
+      "label": "URL threat-list lookup \u00b7 Google Web Risk",
+      "credential_env": "GOOGLE_WEBRISK_API_KEY",
+      "types": [
+        "domain",
+        "website",
+        "company_website",
+        "subdomain"
+      ],
+      "coverage": "Google Web Risk list matches for a URL. Adds an annotation; never hides results.",
+      "provider": "Google Web Risk",
+      "docs": "https://docs.cloud.google.com/web-risk/docs/lookup-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "domain_subdomains",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Known subdomains \u00b7 SecurityTrails",
+      "credential_env": "SECURITYTRAILS_API_KEY",
+      "types": [
+        "domain",
+        "website",
+        "subdomain"
+      ],
+      "coverage": "Provider-known subdomains, not an exhaustive active scan.",
+      "provider": "SecurityTrails",
+      "docs": "https://docs.securitytrails.com/reference/search-old-1",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "domain_trademark",
+      "captured_id": true,
+      "implemented": false,
+      "label": "USPTO Trademark Check",
+      "credential_env": null,
+      "types": [],
+      "coverage": "Needs a documented trademark-search API and matching strategy; a trademark record endpoint alone cannot search by domain.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "domain_whois",
+      "captured_id": true,
+      "implemented": true,
+      "label": "RDAP domain registration",
+      "credential_env": null,
+      "types": [
+        "domain",
+        "website",
+        "company_website",
+        "subdomain"
+      ],
+      "coverage": "Current domain registration response. Registries can withhold fields.",
+      "provider": "RDAP",
+      "docs": "https://about.rdap.org/",
+      "validation": "see VALIDATION.md"
+    },
+    {
+      "id": "email_breach_data",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Email breach exposure \u00b7 Have I Been Pwned",
+      "credential_env": "HIBP_API_KEY",
+      "types": [
+        "email"
+      ],
+      "coverage": "Breach names, dates and exposed data classes; not leaked credential contents.",
+      "provider": "Have I Been Pwned",
+      "docs": "https://haveibeenpwned.com/API/v3",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "email_linkedin_account",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Connected LinkedIn Account",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "email_osint_industries",
+      "captured_id": true,
+      "implemented": true,
+      "label": "OSINT Industries email lookup",
+      "credential_env": "OSINT_INDUSTRIES_API_KEY",
+      "types": [
+        "email"
+      ],
+      "coverage": "Full returned module responses; premium and name matching are user-selectable.",
+      "provider": "OSINT Industries",
+      "docs": "https://docs.osint.industries/reference/search-1",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "email_pdl_enrichment",
+      "captured_id": false,
+      "implemented": true,
+      "label": "People Data Labs email enrichment",
+      "credential_env": "PDL_API_KEY",
+      "types": [
+        "email"
+      ],
+      "coverage": "One matched provider record. Field access depends on the purchased bundle.",
+      "provider": "People Data Labs",
+      "docs": "https://docs.peopledatalabs.com/docs/reference-person-enrichment-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "email_reverse_lookup",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Find Linked Accounts",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "email_social_presence",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Connected Social Accounts",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "email_truepeople",
+      "captured_id": true,
+      "implemented": false,
+      "label": "U.S. Public Records Search",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "email_web_search",
+      "captured_id": false,
+      "implemented": true,
+      "label": "Email web search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "email"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "facebook_posts",
+      "captured_id": false,
+      "implemented": true,
+      "label": "Facebook public posts \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "facebook"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/facebook/profile/posts/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "facebook_profile_data",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Facebook public profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "facebook"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/facebook/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "facebook_profile_followed",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Top Followed Accounts",
+      "credential_env": null,
+      "types": [],
+      "coverage": "No corresponding contract in the reviewed ScrapeCreators specification.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "facebook_profile_followers",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Top Facebook Followers",
+      "credential_env": null,
+      "types": [],
+      "coverage": "No corresponding contract in the reviewed ScrapeCreators specification.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "facebook_profile_likes",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Facebook Likes",
+      "credential_env": null,
+      "types": [],
+      "coverage": "No corresponding contract in the reviewed ScrapeCreators specification.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "facebook_search",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Facebook indexed profile search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "person",
+        "username"
+      ],
+      "coverage": "Indexed web matches, not a native Facebook people search.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "github_public_profile",
+      "captured_id": false,
+      "implemented": true,
+      "label": "GitHub public profile",
+      "credential_env": null,
+      "types": [
+        "username",
+        "github"
+      ],
+      "coverage": "Public profile fields from the GitHub user API. Anonymous rate limits apply.",
+      "provider": "GitHub",
+      "docs": "https://docs.github.com/en/rest/users/users#get-a-user",
+      "validation": "see VALIDATION.md"
+    },
+    {
+      "id": "gmail_account_presence",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Connected Gmail Account",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "image_google_lens",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Google Lens \u00b7 SerpApi",
+      "credential_env": "SERPAPI_API_KEY",
+      "types": [
+        "image"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "SerpApi",
+      "docs": "https://serpapi.com/google-lens-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "image_moderation",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Image content labels (no filtering) \u00b7 Sightengine",
+      "credential_env": "SIGHTENGINE_API_USER,SIGHTENGINE_API_SECRET",
+      "types": [
+        "image"
+      ],
+      "coverage": "Optional content annotations only. Scores never hide or blur the image or other results.",
+      "provider": "Sightengine",
+      "docs": "https://sightengine.com/docs/getstarted",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "image_reverse_search",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Reverse image matches \u00b7 TinEye",
+      "credential_env": "TINEYE_API_KEY",
+      "types": [
+        "image"
+      ],
+      "coverage": "TinEye image and backlink matches, 100 results per search page; no face identification.",
+      "provider": "TinEye",
+      "docs": "https://github.com/TinEye/pytineye",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "image_scene_analysis",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Image properties & type \u00b7 Sightengine",
+      "credential_env": "SIGHTENGINE_API_USER,SIGHTENGINE_API_SECRET",
+      "types": [
+        "image"
+      ],
+      "coverage": "Image properties and type annotations only; no face identification or suppression.",
+      "provider": "Sightengine",
+      "docs": "https://sightengine.com/docs/getstarted",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "image_yandex_images",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Yandex reverse image \u00b7 SerpApi",
+      "credential_env": "SERPAPI_API_KEY",
+      "types": [
+        "image"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "SerpApi",
+      "docs": "https://serpapi.com/google-lens-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "instagram_posts",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Instagram posts \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "instagram"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v2/instagram/user/posts/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "instagram_profile",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Instagram profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "instagram"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/instagram/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "instagram_reels",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Instagram reels \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "instagram"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/instagram/user/reels/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "instagram_search",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Instagram search \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "username",
+        "person"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/instagram/search/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "ip_geolocation",
+      "captured_id": true,
+      "implemented": true,
+      "label": "IP network & location \u00b7 IPinfo",
+      "credential_env": "IPINFO_TOKEN",
+      "types": [
+        "ip"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "IPinfo Core",
+      "docs": "https://ipinfo.io/developers/core-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "ip_hostsdomains",
+      "captured_id": true,
+      "implemented": true,
+      "label": "IP-associated domains \u00b7 SecurityTrails",
+      "credential_env": "SECURITYTRAILS_API_KEY",
+      "types": [
+        "ip"
+      ],
+      "coverage": "Provider-known domains associated with an IPv4 address, one results page per request.",
+      "provider": "SecurityTrails",
+      "docs": "https://docs.securitytrails.com/reference/search-old-1",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "ip_reputation",
+      "captured_id": true,
+      "implemented": true,
+      "label": "IP reputation \u00b7 AbuseIPDB",
+      "credential_env": "ABUSEIPDB_API_KEY",
+      "types": [
+        "ip"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "AbuseIPDB",
+      "docs": "https://docs.abuseipdb.com",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "komi_page",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Komi page \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "komi"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/komi/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "linkbio_page",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Linkbio page \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "linkbio"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/linkbio/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "linkedin_company_posts",
+      "captured_id": false,
+      "implemented": true,
+      "label": "LinkedIn company posts \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "linkedin_company"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/linkedin/company/posts/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "linkedin_company_profile",
+      "captured_id": false,
+      "implemented": true,
+      "label": "LinkedIn company \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "linkedin_company"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/linkedin/company/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "linkedin_email",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Connected LinkedIn Email",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "linkedin_pdl_enrichment",
+      "captured_id": false,
+      "implemented": true,
+      "label": "People Data Labs linkedin enrichment",
+      "credential_env": "PDL_API_KEY",
+      "types": [
+        "linkedin"
+      ],
+      "coverage": "One matched provider record. Field access depends on the purchased bundle.",
+      "provider": "People Data Labs",
+      "docs": "https://docs.peopledatalabs.com/docs/reference-person-enrichment-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "linkedin_post_search",
+      "captured_id": false,
+      "implemented": true,
+      "label": "LinkedIn post search \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "person",
+        "username",
+        "linkedin"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/linkedin/search/posts/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "linkedin_posts",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Latest LinkedIn Posts",
+      "credential_env": null,
+      "types": [],
+      "coverage": "Needs a documented personal-profile posts API; company posts and keyword post search are implemented separately.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "linkedin_profile",
+      "captured_id": true,
+      "implemented": true,
+      "label": "LinkedIn profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "linkedin"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/linkedin/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "linkedin_search",
+      "captured_id": true,
+      "implemented": true,
+      "label": "LinkedIn indexed profile search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "person",
+        "username"
+      ],
+      "coverage": "Indexed web matches, not a native LinkedIn search.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "linktree_page",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Linktree page \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "linktree"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/linktree/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "maps_listing",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Maps / places search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "location",
+        "organization"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "openai_web_search",
+      "captured_id": false,
+      "implemented": true,
+      "label": "Web corroboration \u00b7 OpenAI",
+      "credential_env": "OPENAI_API_KEY",
+      "types": [
+        "*"
+      ],
+      "coverage": "AI web corroboration; at most two billed tool calls per connector run. Full API response retained.",
+      "provider": "OpenAI",
+      "docs": "https://developers.openai.com/api/reference/resources/responses/methods/create",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "person_osint_industries",
+      "captured_id": false,
+      "implemented": true,
+      "label": "OSINT Industries name lookup",
+      "credential_env": "OSINT_INDUSTRIES_API_KEY",
+      "types": [
+        "person"
+      ],
+      "coverage": "Full returned module responses; premium and name matching are user-selectable.",
+      "provider": "OSINT Industries",
+      "docs": "https://docs.osint.industries/reference/search-1",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "person_pdl_enrichment",
+      "captured_id": false,
+      "implemented": true,
+      "label": "People Data Labs person enrichment",
+      "credential_env": "PDL_API_KEY",
+      "types": [
+        "person"
+      ],
+      "coverage": "One matched provider record. Field access depends on the purchased bundle.",
+      "provider": "People Data Labs",
+      "docs": "https://docs.peopledatalabs.com/docs/reference-person-enrichment-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "person_social_search",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Name / social web search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "person"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "phone_breach_data",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Data Breaches & Leaks",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "phone_callapp",
+      "captured_id": true,
+      "implemented": false,
+      "label": "CallApp Contact Data",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "phone_eyecon",
+      "captured_id": true,
+      "implemented": false,
+      "label": "EyeCon Identity Check",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "phone_line_lookup",
+      "captured_id": false,
+      "implemented": true,
+      "label": "Phone validation, carrier & line type \u00b7 Twilio",
+      "credential_env": "TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN",
+      "types": [
+        "phone"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "Twilio",
+      "docs": "https://www.twilio.com/docs/lookup/quickstart",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "phone_osint_industries",
+      "captured_id": true,
+      "implemented": true,
+      "label": "OSINT Industries phone lookup",
+      "credential_env": "OSINT_INDUSTRIES_API_KEY",
+      "types": [
+        "phone"
+      ],
+      "coverage": "Full returned module responses; premium and name matching are user-selectable.",
+      "provider": "OSINT Industries",
+      "docs": "https://docs.osint.industries/reference/search-1",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "phone_pdl_enrichment",
+      "captured_id": false,
+      "implemented": true,
+      "label": "People Data Labs phone enrichment",
+      "credential_env": "PDL_API_KEY",
+      "types": [
+        "phone"
+      ],
+      "coverage": "One matched provider record. Field access depends on the purchased bundle.",
+      "provider": "People Data Labs",
+      "docs": "https://docs.peopledatalabs.com/docs/reference-person-enrichment-api",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "phone_social_trace",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Connected Social Accounts",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "phone_truecaller",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Truecaller Identity Lookup",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "phone_truepeople",
+      "captured_id": true,
+      "implemented": false,
+      "label": "U.S. Public Records Search",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "phone_web_search",
+      "captured_id": false,
+      "implemented": true,
+      "label": "Phone web search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "phone"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "phone_whatsapp",
+      "captured_id": true,
+      "implemented": false,
+      "label": "WhatsApp Account Check",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "pillar_page",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Pillar page \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "pillar"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/pillar/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "pinterest_boards",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Pinterest boards \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "pinterest"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/pinterest/user/boards/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "snapchat_profile",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Snapchat public profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "snapchat"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/snapchat/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "threads_posts",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Threads posts \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "threads"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/threads/user/posts/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "threads_profile",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Threads profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "threads"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/threads/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "tiktok_profile",
+      "captured_id": true,
+      "implemented": true,
+      "label": "TikTok profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "tiktok"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/tiktok/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "tiktok_profile_videos",
+      "captured_id": true,
+      "implemented": true,
+      "label": "TikTok profile videos \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "tiktok"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v3/tiktok/profile/videos/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "tiktok_search",
+      "captured_id": true,
+      "implemented": true,
+      "label": "TikTok user search \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "username",
+        "person"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/tiktok/search/users/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "truepeople_search",
+      "captured_id": true,
+      "implemented": false,
+      "label": "U.S. Public Records Search",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "truthsocial_posts",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Truth Social posts \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "truthsocial"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/truthsocial/user/posts/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "truthsocial_profile",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Truth Social profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "truthsocial"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/truthsocial/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "twitter_latest_tweets",
+      "captured_id": true,
+      "implemented": true,
+      "label": "X / Twitter user tweets \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "twitter"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/twitter/user-tweets/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "twitter_popular_tweets",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Most Popular Tweets",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The documented user-tweets endpoint does not offer a popular sort. Latest/user tweets are implemented; no complete popularity ranking is claimed.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "twitter_profile",
+      "captured_id": true,
+      "implemented": true,
+      "label": "X / Twitter profile \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "twitter"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/twitter/profile/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "twitter_username_history",
+      "captured_id": true,
+      "implemented": true,
+      "label": "Public username history \u00b7 memory.lol",
+      "credential_env": null,
+      "types": [
+        "twitter"
+      ],
+      "coverage": "Public historical observations only. memory.lol restricts its unauthenticated history window; no full-history access is claimed.",
+      "provider": "memory.lol",
+      "docs": "https://github.com/travisbrown/memory.lol",
+      "validation": "see VALIDATION.md"
+    },
+    {
+      "id": "username_breach_data",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Username Breach Data",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "username_osint_industries",
+      "captured_id": true,
+      "implemented": true,
+      "label": "OSINT Industries username lookup",
+      "credential_env": "OSINT_INDUSTRIES_API_KEY",
+      "types": [
+        "username"
+      ],
+      "coverage": "Full returned module responses; premium and name matching are user-selectable.",
+      "provider": "OSINT Industries",
+      "docs": "https://docs.osint.industries/reference/search-1",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "username_reverse_lookup",
+      "captured_id": true,
+      "implemented": false,
+      "label": "Find Linked Accounts",
+      "credential_env": null,
+      "types": [],
+      "coverage": "The capture identifies an internal transform/class, not a usable upstream URL, authentication scheme, request contract, or provider account entitlement.",
+      "provider": null,
+      "docs": null,
+      "validation": "not implemented"
+    },
+    {
+      "id": "username_web_search",
+      "captured_id": false,
+      "implemented": true,
+      "label": "Username web search \u00b7 Serper",
+      "credential_env": "SERPER_API_KEY",
+      "types": [
+        "username"
+      ],
+      "coverage": "Full provider response for the requested page; provider account limits still apply.",
+      "provider": "Serper",
+      "docs": "https://serper.dev",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "wallet_osint_industries",
+      "captured_id": false,
+      "implemented": true,
+      "label": "OSINT Industries wallet lookup",
+      "credential_env": "OSINT_INDUSTRIES_API_KEY",
+      "types": [
+        "wallet"
+      ],
+      "coverage": "Full returned module responses; premium and name matching are user-selectable.",
+      "provider": "OSINT Industries",
+      "docs": "https://docs.osint.industries/reference/search-1",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "youtube_channel",
+      "captured_id": true,
+      "implemented": true,
+      "label": "YouTube channel \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "youtube"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/youtube/channel/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "youtube_channel_shorts",
+      "captured_id": true,
+      "implemented": true,
+      "label": "YouTube shorts \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "youtube"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/youtube/channel/shorts/",
+      "validation": "offline request fixtures; paid live validation pending"
+    },
+    {
+      "id": "youtube_channel_videos",
+      "captured_id": true,
+      "implemented": true,
+      "label": "YouTube videos \u00b7 ScrapeCreators",
+      "credential_env": "SCRAPECREATORS_API_KEY",
+      "types": [
+        "youtube"
+      ],
+      "coverage": "Public source response. No trimmed-response option is requested.",
+      "provider": "ScrapeCreators",
+      "docs": "https://docs.scrapecreators.com/v1/youtube/channel-videos/",
+      "validation": "offline request fixtures; paid live validation pending"
+    }
+  ]
+}
